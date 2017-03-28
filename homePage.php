@@ -3,6 +3,8 @@
     require("conn.php");
     
     $_SESSION['sortOption'] = $_POST['sortMethod'];
+    $_SESSION['orderType'] = $_POST['orderType'];
+    var_dump($_SESSION['orderType']);
     $sortingOptions = ['Sort By', 'Team','Position','Name'];
 ?>
 
@@ -37,10 +39,43 @@
                     }
                 ?>
             </select>
+            <?php
+                if($_SESSION['orderType'] == 'ASC'){
+                    echo "<label>Ascending<input type='radio' name='orderType' value='ASC' checked/></label>";
+                    echo "<label>Descending<input type='radio' name='orderType' value='DESC'/></label>";
+                }
+                else if($_SESSION['orderType'] == 'DESC'){
+                    echo "<label>Ascending<input type='radio' name='orderType' value='ASC'/></label>";
+                    echo "<label>Descending<input type='radio' name='orderType' value='DESC' checked/></label>";
+                }
+                else{
+                    echo "<label>Ascending<input type='radio' name='orderType' value='ASC'/></label>";
+                    echo "<label>Descending<input type='radio' name='orderType' value='DESC'/></label>";
+                }
+            ?>
+                
             <input type="submit" name="filterOption"/>
         </form>
         <?php
-            $query = 'SELECT teamName FROM Team ORDER BY teamName ASC';
+            $query = 'SELECT Player.playerName, Team.teamName FROM Player LEFT JOIN Team ON 
+                      Team.teamId = Player.teamId';
+            if($_SESSION['sortOption'] == 'Team'){
+                $query .= " ORDER BY Team.teamName";
+                if($_SESSION['orderType'] != null){
+                $query .= " " . $_SESSION['orderType'];
+            }
+            }
+            
+            else if($_SESSION['sortOption'] == 'Name'){
+                $query .= " ORDER BY Player.playerName";
+                if($_SESSION['orderType'] != null){
+                $query .= " " . $_SESSION['orderType'];
+            }
+            }
+            
+        
+            echo $query . "<br><br>";
+        
             $result = mysql_query($query);
             
             echo "<table>";
