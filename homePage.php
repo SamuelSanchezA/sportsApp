@@ -2,7 +2,8 @@
     session_start();
     require("conn.php");
     
-    $_SESSION['teamFilter'] = $_POST['teamFilter'];
+    $_SESSION['sortOption'] = $_POST['sortMethod'];
+    $sortingOptions = ['Sort By', 'Team','Position','Name'];
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +14,31 @@
     </head>
     <body>
         <h1>Welcome to the Football Store!</h1>
+        <form action='' method = 'post'>
+            <select name = 'sortMethod'>
+                <?php
+                    if($_SESSION['sortOption'] == ''){
+                        $_SESSION['sortOption'] = 'Sort By';
+                        echo '<option>';
+                        echo $_SESSION['sortOption'];
+                        echo '</option>'; 
+                    }
+                    else{
+                        echo '<option>';
+                        echo $_SESSION['sortOption'];
+                        echo '</option>';
+                    }
+                    for($i = 0; $i < count($sortingOptions); $i++){
+                        if($sortingOptions[$i] != $_SESSION['sortOption']){
+                            echo "<option>";
+                            echo $sortingOptions[$i];
+                            echo "</option>";
+                        }
+                    }
+                ?>
+            </select>
+            <input type="submit" name="filterOption"/>
+        </form>
         <?php
             $query = 'SELECT teamName FROM Team ORDER BY teamName ASC';
             $result = mysql_query($query);
