@@ -1,7 +1,7 @@
 <?php
     session_start();
     require("conn.php");
-    
+
     $_SESSION['sortOption'] = $_POST['sortMethod'];
     $_SESSION['orderType'] = $_POST['orderType'];
     var_dump($_SESSION['orderType']);
@@ -75,7 +75,6 @@
             }
             }
             
-        
             echo $query . "<br><br>";
         
             $result = mysql_query($query);
