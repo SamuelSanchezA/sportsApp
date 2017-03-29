@@ -4,7 +4,7 @@
 
     $_SESSION['sortOption'] = $_POST['sortMethod'];
     $_SESSION['orderType'] = $_POST['orderType'];
-    var_dump($_SESSION['orderType']);
+    // var_dump($_SESSION['orderType']);
     $sortingOptions = ['Sort By', 'Team','Position','Name'];
 ?>
 
