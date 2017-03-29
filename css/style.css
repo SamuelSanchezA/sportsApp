@@ -10,7 +10,22 @@ body{
 }
 table{
     color: white;
+    margin-left: 5%;
 }
 #option{
     text-align: center;
+}
+
+.returnButtonContainer{
+    position: fixed;
+    top: 20%;
+    right: 8%;
+}
+
+.returnButton{
+    padding: 20px;
+}
+
+#searchButton{
+    padding: 5px;
 }
