@@ -81,6 +81,13 @@
                     $query .= " " . $_SESSION['orderType'];
                 }
             }
+            
+            else if($_SESSION['sortOption'] == 'Position'){
+                $query .= " ORDER BY Player.position";
+                if($_SESSION['orderType'] != null){
+                    $query .= " " . $_SESSION['orderType'];
+                }
+            }
         
             $result = mysql_query($query);
             echo "<form action = 'shoppingCart.php' method = 'post'>";
