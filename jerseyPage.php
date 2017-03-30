@@ -64,9 +64,12 @@
             <form action = 'shoppingCart.php' method = 'post'>
                 <button class='returnButton' type="submit" name="shoppingCart"/>Go To Shopping Cart </button>
             </form>
+            <form action = 'gameTickets.php' method='post'>
+                <button class='returnButton'>Go To Ticket Page</button>
+            </form>
         </div>
         <?php
-            $query = 'SELECT Team.teamName, Player.playerName, Player.position FROM Player LEFT JOIN Team ON 
+            $query = 'SELECT * FROM Player LEFT JOIN Team ON 
                       Team.teamId = Player.teamId';
             if($_SESSION['sortOption'] == 'Team'){
                 $query .= " ORDER BY Team.teamName";
@@ -92,17 +95,34 @@
             $result = mysql_query($query);
             echo "<form action = 'shoppingCart.php' method = 'post'>";
             echo "<table>";
+            echo "<tr>";
+            echo "<td>";
+            echo "Position";
+            echo "</td>";
+            echo "<td>";
+            echo "Player";
+            echo "</td>";
+            echo "<td>";
+            echo "Team";
+            echo "</td>";
+            echo "</tr>";
             while($rows = mysql_fetch_array($result)){
                 echo '<tr>';
-                for($i = 0; $i < count($rows); $i++){
+                // for($i = 0; $i < count($rows); $i++){
                     echo '<td>';
-                    echo $rows[$i];
+                    echo $rows[2];
                     echo '</td>';
-                }
+                    echo '<td>';
+                    echo $rows[1];
+                    echo '</td>';
+                    echo '<td>';
+                    echo $rows[5];
+                    echo '</td>';
+                // }
                 echo '<td>';
                 echo "QTY <input type='text' name = 'selection[]' value = '0'/>";
                 echo "</td>";
-                echo '</td>';
+                echo "<input type='hidden' value=" . "'" . $rows[0] . "'" . " name='player_ids[]' />";
                 echo '</tr>';
             }
             echo "</table>";
