@@ -16,7 +16,7 @@
     </head>
     <body>
        <h1>Welcome to the Football Store!</h1>
-        <h2>Jerseys</h2>
+        <h2>Tickets</h2>
         <div id = 'option'>
             <!--<form action='' method = 'post'>-->
                 <!--<select name = 'sortMethod'>-->
@@ -77,9 +77,12 @@
             $result1 = mysql_query($query1);
             $result2 = mysql_query($query2);
             
+            echo var_dump($result1);
+            
             
             echo "<form action = 'shoppingCart.php' method = 'post'>";
             echo "<table>";
+            echo "<caption> Jerseys </caption";
             for($i = 0; $i < 40; $i++){
                 $rows1 = mysql_fetch_array($result1);
                 $rows2 = mysql_fetch_array($result2);

@@ -97,7 +97,7 @@
             echo "<table>";
             echo "<tr>";
             echo "<td>";
-            echo "Position";
+            echo "Team";
             echo "</td>";
             echo "<td>";
             echo "Player";
@@ -107,22 +107,29 @@
             echo "</td>";
             echo "</tr>";
             while($rows = mysql_fetch_array($result)){
-                echo '<tr>';
-                // for($i = 0; $i < count($rows); $i++){
-                    echo '<td>';
-                    echo $rows[2];
-                    echo '</td>';
-                    echo '<td>';
-                    echo $rows[1];
-                    echo '</td>';
-                    echo '<td>';
-                    echo $rows[5];
-                    echo '</td>';
-                // }
+                //0. Player Id.
+                //1. Player name.
+                //2. Team Id.
+
+                // // for($i = 0; $i < count($rows); $i++){
+                echo '<td>';
+                echo $rows[4];
+                echo '</td>';
+                echo '<td>';
+                echo $rows[1];
+                echo '</td>';
+                echo '<td>';
+                echo $rows[5];
+                echo '</td>';
+                // // }
                 echo '<td>';
                 echo "QTY <input type='text' name = 'selection[]' value = '0'/>";
                 echo "</td>";
                 echo "<input type='hidden' value=" . "'" . $rows[0] . "'" . " name='player_ids[]' />";
+                echo '</tr>';
+                echo "<input type='hidden' value=" . "'" . $rows[1] . "'" . " name='player_names[]' />";
+                echo '</tr>';
+                echo "<input type='hidden' value=" . "'" . $rows[4] . "'" . " name='team[]' />";
                 echo '</tr>';
             }
             echo "</table>";
