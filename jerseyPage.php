@@ -97,7 +97,7 @@
             echo "<table>";
             echo "<tr>";
             echo "<td>";
-            echo "Team";
+            echo "Position";
             echo "</td>";
             echo "<td>";
             echo "Player";
@@ -113,7 +113,7 @@
 
                 // // for($i = 0; $i < count($rows); $i++){
                 echo '<td>';
-                echo $rows[4];
+                echo $rows[2];
                 echo '</td>';
                 echo '<td>';
                 echo $rows[1];
